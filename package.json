@@ -1,0 +1,30 @@
+{
+  "name": "mongo-scrape",
+  "version": "1.0.0",
+  "description": "week 18 mongoose homework",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhoffman103/mongo-scrape.git"
+  },
+  "author": "Bobby Hoffman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhoffman103/mongo-scrape/issues"
+  },
+  "homepage": "https://github.com/rhoffman103/mongo-scrape#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.3.4",
+    "path": "^0.12.7",
+    "request": "^2.88.0"
+  }
+}

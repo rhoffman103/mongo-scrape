@@ -1,0 +1,6 @@
+/* SAVE ARTICLE BUTTON */
+.options:hover {
+	cursor: pointer;
+	color: #0056b3;
+	text-decoration: underline;
+}
