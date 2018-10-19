@@ -15,7 +15,8 @@ var cheerio = require("cheerio");
 var db = require("./models");
 
 // require routes
-var routes = require('./routes/htmlRoutes');
+var htmlRoutes = require('./routes/htmlRoutes');
+var apiRoutes = require('./routes/apiRoutes');
 
 var PORT = process.env.PORT || 3000;
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
@@ -49,7 +50,8 @@ app.use(express.static("public"));
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
-app.use('/', routes);
+app.use('/', htmlRoutes);
+app.use('/', apiRoutes);
 
 // Start the server
 app.listen(PORT, function() {

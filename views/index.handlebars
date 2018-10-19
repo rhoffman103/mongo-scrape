@@ -41,6 +41,8 @@
 				{{/unless}}
 				{{#if ../saved}}
 					<span class="delete-article options">Delete Article</span>
+					<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#add-note-modal">Add A Note</button>
+					{{> addNoteModal this}}
 				{{/if}}
 			</div>
 		</div>
