@@ -31,6 +31,7 @@
 	</nav>
 
 	<h1>Scrapey Scrape!</h1>
+	
 	{{#each articles}}
 		<div class="card">
 			<div class="card-body">
@@ -40,9 +41,11 @@
 					<span class="save-article options">Save Article</span>
 				{{/unless}}
 				{{#if ../saved}}
-					<span class="delete-article options">Delete Article</span>
-					<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#add-note-modal">Add A Note</button>
+					<span class="delete-article options" data-delete-article="{{this._id}}">Delete Article</span>
+					<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-add-note-{{this._id}}">Add A Note</button>
 					{{> addNoteModal this}}
+					<button type="button" class="btn btn-success mr-4 float-right" data-toggle="modal" data-target="#view-notes-modal-{{this._id}}">View Notes</button>
+					{{> viewNotesModal this}}
 				{{/if}}
 			</div>
 		</div>

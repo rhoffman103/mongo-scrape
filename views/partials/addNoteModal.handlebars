@@ -1,10 +1,5 @@
-<!-- Button to Open the Modal -->
-{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Open modal
-</button> --}}
-
 <!-- The Modal -->
-<div class="modal" id="add-note-modal">
+<div class="modal" id="modal-add-note-{{this._id}}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -19,11 +14,11 @@
                 <form>
                     <div class="form-group">
                         <label for="note-title">Note Title</label>
-                        <input class="form-control" id="note-title" type="text" placeholder="Default input">
+                        <input class="form-control note-title" type="text" placeholder="Default input">
                     </div>
                     <div class="form-group">
                         <label for="note-body">Note Content</label>
-                        <textarea class="form-control" id="note-body" rows="6"></textarea>
+                        <textarea class="form-control note-body" rows="6"></textarea>
                     </div>
                 </form>
             </div>

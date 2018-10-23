@@ -2,7 +2,6 @@ $(document).ready(function() {
 
 	const checkForSaved = function() {
 		$.get("/articles", function(data) {
-			console.log(data[0]._id)
 			const titles = data.map(title => title.title);
 			titles.forEach(function(savedTitle) {
 				$(".card-title").each(function(index) {
@@ -43,24 +42,49 @@ $(document).ready(function() {
 	$(document).on("click", ".save-note", function() {
 		// Grab the id associated with the article from the submit button
 		var thisId = $(this).attr("data-id");
+		console.log("save id: " + thisId);
+		console.log("title: " + $("#modal-add-note-" + thisId).find(".note-title").val());
+		console.log("body: " + $("#modal-add-note-" + thisId).find(".note-body").val());
 
 		// Run a POST request to change the note, using what's entered in the inputs
+	
 		$.post(`/articles/${thisId}`,
 			{
-				// Value taken from title input
-				title: $("#note-title").val(),
-				// Value taken from note textarea
-				body: $("#note-body").val()
-			})
-			// With that done
-			.then(function(data) {
-				// Log the response
-				console.log(data);
-				// Empty the notes section
-				$("#note-title").val("");
-				$("#note-body").val("");
-				// $(".add-note-modal").modal("dispose");
-			});
+				title: $("#modal-add-note-" + thisId).find(".note-title").val(),
+				body: $("#modal-add-note-" + thisId).find(".note-body").val(),
+				article_id: thisId
+			}
+		).then(function(data) {
+			console.log("my note: " + data);
+			// Empty the notes section
+			$("#modal-add-note-" + thisId).find(".note-title").val('');
+			$("#modal-add-note-" + thisId).find(".note-body").val('');
+			$("#modal-add-note-" + thisId).modal("hide");
+		});
+	
+	});
+
+	// Delete an article from the database
+	$(document).on("click", ".delete-article", function() {
+		const $this = $(this)
+		thisId = $this.attr("data-delete-article");
+		$.post(`/delete/article/${thisId}`)
+		.then(function(deletedArticle) {
+			console.log(deletedArticle);
+			$this.parent().remove();
+		})
+	});
+
+	// Delete a Note form the database
+	$(document).on("click", ".delete-note", function() {
+		const $this = $(this);
+		const noteId = $this.attr("data-delete-note");
+		const articleId = $this.attr("data-article-id");
+		$.post(`/delete/note/${noteId}/${articleId}`)
+		.then(function(deletedNote) {
+			console.log(deletedNote);
+			$this.parent().remove();
+		})
 	});
 
 });

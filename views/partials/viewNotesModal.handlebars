@@ -1,0 +1,30 @@
+
+<!-- Modal -->
+<div class="modal fade" id="view-notes-modal-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">{{title}}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				{{#if this.notes}}
+					{{#each this.notes}}
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">{{this.title}}</h5>
+								<p class="card-text">{{this.body}}</p>
+								<button type="button" class="btn btn-primary delete-note" data-delete-note="{{this._id}}" data-article-id="{{this.article_id}}">Delete Note</button>
+							</div>
+						</div>
+					{{/each}}
+				{{/if}}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

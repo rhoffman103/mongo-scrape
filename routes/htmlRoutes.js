@@ -6,7 +6,7 @@ var request = require("request");
 
 // Home Page
 router.get("/", (req, res) => {
-    db.Article.find({}).then(dbArticles => {
+    db.Article.find({}).populate("notes").then(dbArticles => {
         console.log(dbArticles);
         res.render("index", {
             articles: dbArticles,
