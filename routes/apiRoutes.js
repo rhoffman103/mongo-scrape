@@ -33,9 +33,9 @@ router.post("/delete/article/:id", function(req, res) {
 // FIXME Update article notes to remove  associated note
 router.post("/delete/note/:noteid/:articleid", function(req, res) {
     db.Note.deleteOne( { "_id" : req.params.noteid } )
-    .then(function(data) {
-        db.Article.findOneAndUpdate( { "_id" : req.params.articleid}, {$pull: { "notes" : req.params.articleid}} )
-    })
+    // .then(function(data) {
+    //     db.Article.findOneAndUpdate( { "_id" : req.params.articleid}, {$pull: { "notes" : req.params.articleid}} )
+    // })
     .then(function(dbNote) {
         res.json(dbNote);
     })
