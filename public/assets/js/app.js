@@ -17,8 +17,10 @@ $(document).ready(function() {
 	};
 
 	const saveArticle = (article) => {
-		$.post("/save/article", article);
-		console.log("saved article: " + article.title);
+		$.post("/save/article", article)
+		.then( data => {
+			// console.log("saved article: " + JSON.stringify(data, null, 2));
+		})
 	}
 
 	checkForSaved();
@@ -55,7 +57,8 @@ $(document).ready(function() {
 			// Empty the notes section
 			$("#modal-add-note-" + thisId).find(".note-title").val('');
 			$("#modal-add-note-" + thisId).find(".note-body").val('');
-			$("#modal-add-note-" + thisId).modal("hide");
+			location.reload();
+			// $("#modal-add-note-" + thisId).modal("hide");
 		});
 	
 	});

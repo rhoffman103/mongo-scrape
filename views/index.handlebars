@@ -1,7 +1,7 @@
 <div class="container">
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">Navbar</a>
+		<a class="navbar-brand" href="/">Mongo Scraper</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -11,11 +11,6 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
-				{{#unless saved}}
-				<li class="nav-item">
-					<a class="nav-link scrape-btn" href="/saved">Saved Articles</a>
-				</li>
-				{{/unless}}
 				{{#unless hacker}}
 				<li class="nav-item">
 					<a class="nav-link" href="/scrape/hackernews">Hacker News</a>
@@ -30,10 +25,14 @@
 		</div>
 	</nav>
 
-	<h1>Scrapey Scrape!</h1>
+	<div class="jumbotron jumbotron-fluid">
+  		<div class="container">
+			<h1 class="display-4 text-center">Mongo Scraper!</h1>
+		</div>
+	</div>
 	
 	{{#each articles}}
-		<div class="card" data-card="{{this._id}}">
+		<div class="card mb-4" data-card="{{this._id}}">
 			<div class="card-body">
 				<h5 class="card-title"><a href="{{this.link}}" target="_blank">{{this.title}}</a></h5>
 				<p class="card-text">{{this.summary}}</p>
