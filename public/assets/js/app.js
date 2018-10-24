@@ -42,12 +42,8 @@ $(document).ready(function() {
 	$(document).on("click", ".save-note", function() {
 		// Grab the id associated with the article from the submit button
 		var thisId = $(this).attr("data-id");
-		console.log("save id: " + thisId);
-		console.log("title: " + $("#modal-add-note-" + thisId).find(".note-title").val());
-		console.log("body: " + $("#modal-add-note-" + thisId).find(".note-body").val());
 
 		// Run a POST request to change the note, using what's entered in the inputs
-	
 		$.post(`/articles/${thisId}`,
 			{
 				title: $("#modal-add-note-" + thisId).find(".note-title").val(),
@@ -70,8 +66,8 @@ $(document).ready(function() {
 		thisId = $this.attr("data-delete-article");
 		$.post(`/delete/article/${thisId}`)
 		.then(function(deletedArticle) {
-			console.log(deletedArticle);
-			$this.parent().remove();
+			console.log($(".card").attr("data-card"));
+			$(".card").attr("data-card", thisId).remove();
 		})
 	});
 
@@ -82,8 +78,7 @@ $(document).ready(function() {
 		const articleId = $this.attr("data-article-id");
 		$.post(`/delete/note/${noteId}/${articleId}`)
 		.then(function(deletedNote) {
-			console.log(deletedNote);
-			$this.parent().remove();
+			$this.parent().parent().attr("data-note-card", noteId).remove();
 		})
 	});
 

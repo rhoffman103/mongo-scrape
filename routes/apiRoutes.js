@@ -17,11 +17,11 @@ router.post("/save/article", function(req, res) {
 
 // Delete An Article and all associated Notes
 router.post("/delete/article/:id", function(req, res) {
-    db.Article.deleteOne( { "_id" : req.params.id } )
-    .then(function() {
-        db.Note.deleteMany( { "article_id" : req.params.id } )
-    })
-    .then(function(dbArticle) {
+    Promise.all([
+        db.Article.deleteOne( { "_id" : req.params.id }),
+        db.Note.deleteMany({ "article_id" : req.params.id })
+    ])
+    .then( ([ dbArticle, dbNote ]) => {
         res.json(dbArticle);
     })
     .catch(function(err) {
@@ -29,16 +29,14 @@ router.post("/delete/article/:id", function(req, res) {
     });
 });
 
-// Delete A Note
-// FIXME Update article notes to remove  associated note
+// Delete A Note and remove note_id from article notes array
 router.post("/delete/note/:noteid/:articleid", function(req, res) {
-    db.Note.deleteOne( { "_id" : req.params.noteid } )
-    // .then(function(data) {
-    //     db.Article.findOneAndUpdate( { "_id" : req.params.articleid}, {$pull: { "notes" : req.params.articleid}} )
-    // })
-    .then(function(dbNote) {
-        res.json(dbNote);
-    })
+    Promise.all([
+        db.Note.deleteOne({ "_id" : req.params.noteid }),
+        db.Article.findOneAndUpdate( { "_id" : req.params.articleid}, {$pull: { "notes" : req.params.noteid}} )        
+      ]).then( ([ dbNote, dbArticle ]) => {
+        res.json(dbNote)
+      })
     .catch(function(error) {
         res.json(error);
     });

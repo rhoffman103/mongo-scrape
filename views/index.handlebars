@@ -33,7 +33,7 @@
 	<h1>Scrapey Scrape!</h1>
 	
 	{{#each articles}}
-		<div class="card">
+		<div class="card" data-card="{{this._id}}">
 			<div class="card-body">
 				<h5 class="card-title"><a href="{{this.link}}" target="_blank">{{this.title}}</a></h5>
 				<p class="card-text">{{this.summary}}</p>
