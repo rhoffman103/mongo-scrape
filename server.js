@@ -23,7 +23,6 @@ var PORT = process.env.PORT || 3000;
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://root:root@192.168.99.100/mongooseScraper?authSource=admin";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
 mongoose.Promise = Promise;
 
 // Initialize Express

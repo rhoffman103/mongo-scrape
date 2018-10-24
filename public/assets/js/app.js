@@ -70,7 +70,7 @@ $(document).ready(function() {
 		$.post(`/delete/article/${thisId}`)
 		.then(function(deletedArticle) {
 			console.log($(".card").attr("data-card"));
-			$(".card").attr("data-card", thisId).remove();
+			$this.parent().parent().attr("data-card", thisId).remove();
 		})
 	});
 
